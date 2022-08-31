@@ -36,12 +36,12 @@ function ItemAction(props) {
               static
               className="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
             >
-              <div className="py-1">
+              <div className="py-1 cursor-pointer">
                 <Menu.Item>
                   {({ active }) => (
                     <div
                       className={`${
-                        active ? "text-green-500" : "text-gray-700"
+                        active ? "text-cyan-600" : "text-gray-700"
                       } flex justify-left w-full px-4 py-2 text-sm leading-5 text-left`}
                       onClick={props.handleMoveRight}
                     >
@@ -67,7 +67,7 @@ function ItemAction(props) {
                   {({ active }) => (
                     <div
                       className={`${
-                        active ? "text-green-500" : "text-gray-700"
+                        active ? "text-cyan-600" : "text-gray-700"
                       } flex justify-left w-full px-4 py-2 text-sm leading-5 text-left`}
                       onClick={props.handleMoveLeft}
                     >
@@ -93,7 +93,7 @@ function ItemAction(props) {
                   {({ active }) => (
                     <div
                       className={`${
-                        active ? "text-green-500" : "text-gray-700"
+                        active ? "text-cyan-600" : "text-gray-700"
                       } flex justify-left w-full px-4 py-2 text-sm leading-5 text-left`}
                       onClick={props.handleEdit}
                     >
