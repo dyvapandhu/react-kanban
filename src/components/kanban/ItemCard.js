@@ -1,6 +1,19 @@
+import ItemAction from "./ItemAction";
 function ItemCard() {
+  function handleMoveRight() {
+    console.log("handleMoveRight");
+  }
+  function handleMoveLeft() {
+    console.log("handleMoveLeft");
+  }
+  function handleEdit() {
+    console.log("handleEdit");
+  }
+  function handleDelete() {
+    console.log("handleDelete");
+  }
   return (
-    <div className="mt-3 block p-3 max-w-sm bg-white rounded-md border border-gray-200 hover:bg-gray-100 ">
+    <div className="mt-3 block p-3 max-w-sm bg-white rounded-md border border-gray-200 hover:bg-blue-100 ">
       <p className="font-semibold">
         Here are the biggest enterprise technology acquisitions of 2021 so far,
         in reverse chronological order.
@@ -19,26 +32,12 @@ function ItemCard() {
           <p className="ml-2 mr-2 text-xs text-gray-500">75%</p>
         </div>
         <div className="basis-1/4 text-right">
-          <button
-            id="dropdownMenu"
-            type="button"
-            className="focus:ring-4 focus:outline-none font-medium text-sm inline-flex"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-              ></path>
-            </svg>
-          </button>
+          <ItemAction
+            handleMoveRight={handleMoveRight}
+            handleMoveLeft={handleMoveLeft}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+          />
         </div>
       </div>
     </div>

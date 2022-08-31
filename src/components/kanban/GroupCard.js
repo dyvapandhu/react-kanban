@@ -1,19 +1,19 @@
 import ItemCard from "./ItemCard";
 
-function GroupCard() {
+function GroupCard(props) {
   return (
-    <div className="block p-3 max-w-sm bg-white rounded-md border border-gray-200 hover:bg-gray-100 ">
+    <div className="block p-3 max-w-sm bg-emerald-50 rounded-md border border-emerald-500">
       <button
         type="button"
         disabled
-        className="py-1 px-1 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-sm border border-gray-200"
+        className="bg-emerald-50 border-emerald-500 py-1 px-1 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-sm border border-gray-200"
       >
-        Group Task 1
+        { props.data.title }
       </button>
-      <p className="mt-1 mb-2">January - March</p>
-      <ItemCard className="mb-2" />
-      <ItemCard className="mb-2" />
-      <ItemCard className="mb-2" />
+      <p className="mt-1 mb-2">{ props.data.description }</p>
+      <ItemCard />
+      <ItemCard />
+      <ItemCard />
       <button
         type="button"
         className="mt-1 focus:ring-4 focus:outline-none font-medium text-sm mt-2 inline-flex"
