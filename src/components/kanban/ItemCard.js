@@ -52,6 +52,8 @@ function ItemCard(props) {
         </div>
         <div className="basis-1/4 text-right">
           <ItemAction
+            isShowMoveRight={props.order < props.totalGroup}
+            isShowMoveLeft={props.order > 1}
             handleMoveRight={handleMoveRight}
             handleMoveLeft={handleMoveLeft}
             handleEdit={handleEdit}

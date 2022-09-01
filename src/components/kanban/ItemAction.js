@@ -37,58 +37,62 @@ function ItemAction(props) {
               className="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
             >
               <div className="py-1 cursor-pointer">
-                <Menu.Item>
-                  {({ active }) => (
-                    <div
-                      className={`${
-                        active ? "text-cyan-600" : "text-gray-700"
-                      } flex justify-left w-full px-4 py-2 text-sm leading-5 text-left`}
-                      onClick={props.handleMoveRight}
-                    >
-                      <svg
-                        className="w-5 h-5 mr-3"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
+                {props.isShowMoveRight ? (
+                  <Menu.Item>
+                    {({ active }) => (
+                      <div
+                        className={`${
+                          active ? "text-cyan-600" : "text-gray-700"
+                        } flex justify-left w-full px-4 py-2 text-sm leading-5 text-left`}
+                        onClick={props.handleMoveRight}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        ></path>
-                      </svg>
-                      <p>Move Right</p>
-                    </div>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <div
-                      className={`${
-                        active ? "text-cyan-600" : "text-gray-700"
-                      } flex justify-left w-full px-4 py-2 text-sm leading-5 text-left`}
-                      onClick={props.handleMoveLeft}
-                    >
-                      <svg
-                        className="w-5 h-5 mr-3"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
+                        <svg
+                          className="w-5 h-5 mr-3"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          ></path>
+                        </svg>
+                        <p>Move Right</p>
+                      </div>
+                    )}
+                  </Menu.Item>
+                ) : null}
+                {props.isShowMoveLeft ? (
+                  <Menu.Item>
+                    {({ active }) => (
+                      <div
+                        className={`${
+                          active ? "text-cyan-600" : "text-gray-700"
+                        } flex justify-left w-full px-4 py-2 text-sm leading-5 text-left`}
+                        onClick={props.handleMoveLeft}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                        ></path>
-                      </svg>
-                      <p>Move Left</p>
-                    </div>
-                  )}
-                </Menu.Item>
+                        <svg
+                          className="w-5 h-5 mr-3"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                          ></path>
+                        </svg>
+                        <p>Move Left</p>
+                      </div>
+                    )}
+                  </Menu.Item>
+                ) : null}
                 <Menu.Item>
                   {({ active }) => (
                     <div

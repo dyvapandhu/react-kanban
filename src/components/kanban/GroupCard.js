@@ -20,6 +20,8 @@ function GroupCard(props) {
         return <ItemCard
           key={item.id}
           data={item}
+          order={props.order}
+          totalGroup={props.totalGroup}
           openModalDelete={props.openModalDelete}
           openModalTask={props.openModalTask}
           setTaskName={props.setTaskName}

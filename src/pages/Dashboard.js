@@ -49,7 +49,17 @@ function DashboardPage() {
       created_at: "2022-08-31T01:57:17.123Z",
       updated_at: "2022-08-31T01:57:17.123Z",
       description: "April - June",
-      items: [],
+      items: [
+        {
+          id: 1944,
+          name: "Bundle interplanetary analytics for improved transmission",
+          done: null,
+          todo_id: 254,
+          created_at: "2022-09-01T17:38:30.070Z",
+          updated_at: "2022-09-01T17:38:30.070Z",
+          progress_percentage: 30.0,
+        },
+      ],
     },
     {
       id: 255,
@@ -58,7 +68,17 @@ function DashboardPage() {
       created_at: "2022-08-31T01:57:54.092Z",
       updated_at: "2022-08-31T01:57:54.092Z",
       description: "July - September",
-      items: [],
+      items: [
+        {
+          id: 1945,
+          name: "Data Migration: Performance & Culture End Game",
+          done: null,
+          todo_id: 255,
+          created_at: "2022-09-01T17:39:09.234Z",
+          updated_at: "2022-09-01T17:39:09.234Z",
+          progress_percentage: 60.0,
+        },
+      ],
     },
     {
       id: 256,
@@ -67,7 +87,17 @@ function DashboardPage() {
       created_at: "2022-08-31T01:58:08.391Z",
       updated_at: "2022-08-31T01:58:08.391Z",
       description: "October - December",
-      items: [],
+      items: [
+        {
+          id: 1946,
+          name: "Bundle interplanetary analytics for improved transmission",
+          done: null,
+          todo_id: 256,
+          created_at: "2022-09-01T17:39:42.264Z",
+          updated_at: "2022-09-01T17:39:42.264Z",
+          progress_percentage: 20.0,
+        },
+      ],
     },
   ];
 
@@ -95,30 +125,37 @@ function DashboardPage() {
   }
 
   function setTaskValue(val) {
-    setTaskName(val)
+    setTaskName(val);
   }
 
   function setProgressValue(val) {
-    setProgress(val)
+    setProgress(val);
   }
 
   return (
     <div className="container m-2">
       <div className="grid grid-cols-4 gap-4">
-        {datas.map((data) => {
-          return <GroupCard
-            key={data.id}
-            data={data}
-            openModalDelete={openModalDelete}
-            openModalTask={openModalTask}
-            isModalDeleteOpen={isModalDeleteOpen}
-            isModalTaskOpen={isModalTaskOpen}
-            setTaskName={setTaskName}
-            setProgress={setProgress}
-          />;
+        {datas.map((data, index) => {
+          return (
+            <GroupCard
+              key={data.id}
+              data={data}
+              order={index + 1}
+              totalGroup={datas.length}
+              openModalDelete={openModalDelete}
+              openModalTask={openModalTask}
+              isModalDeleteOpen={isModalDeleteOpen}
+              isModalTaskOpen={isModalTaskOpen}
+              setTaskName={setTaskName}
+              setProgress={setProgress}
+            />
+          );
         })}
       </div>
-      <DeleteModal isModalDeleteOpen={isModalDeleteOpen} closeModalDelete={closeModalDelete} />
+      <DeleteModal
+        isModalDeleteOpen={isModalDeleteOpen}
+        closeModalDelete={closeModalDelete}
+      />
       <TaskModal
         taskName={taskName}
         progress={progress}
@@ -126,10 +163,10 @@ function DashboardPage() {
         onChangeProgress={setProgressValue}
         isEdit={isEdit}
         isModalTaskOpen={isModalTaskOpen}
-        closeModalTask={closeModalTask} />
+        closeModalTask={closeModalTask}
+      />
     </div>
   );
 }
 
 export default DashboardPage;
-
