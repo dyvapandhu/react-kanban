@@ -1,6 +1,11 @@
 import ItemCard from "./ItemCard";
 
 function GroupCard(props) {
+  function handleNewTask() {
+    props.setTaskName('')
+    props.setProgress('')
+    props.openModalTask(false)
+  }
   return (
     <div className="block p-3 max-w-sm bg-emerald-50 rounded-md border border-emerald-500">
       <button
@@ -16,11 +21,15 @@ function GroupCard(props) {
           key={item.id}
           data={item}
           openModalDelete={props.openModalDelete}
+          openModalTask={props.openModalTask}
+          setTaskName={props.setTaskName}
+          setProgress={props.setProgress}
         />;
       })}
       <button
         type="button"
-        className="mt-1 focus:ring-4 focus:outline-none font-medium text-sm mt-2 inline-flex"
+        className="mt-2 focus:ring-4 focus:outline-none font-medium text-sm mt-2 inline-flex"
+        onClick={handleNewTask}
       >
         <svg
           className="w-5 h-5 mr-1"

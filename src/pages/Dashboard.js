@@ -1,6 +1,7 @@
 import GroupCard from "../components/kanban/GroupCard";
 import { useState } from "react";
 import DeleteModal from "../components/kanban/DeleteModal";
+import TaskModal from "../components/kanban/TaskModal";
 
 function DashboardPage() {
   const datas = [
@@ -71,6 +72,10 @@ function DashboardPage() {
   ];
 
   let [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+  let [isModalTaskOpen, setIsModalTaskOpen] = useState(false);
+  let [isEdit, setIsEdit] = useState(false);
+  let [taskName, setTaskName] = useState(false);
+  let [progress, setProgress] = useState(false);
 
   function closeModalDelete() {
     setIsModalDeleteOpen(false);
@@ -78,6 +83,23 @@ function DashboardPage() {
 
   function openModalDelete() {
     setIsModalDeleteOpen(true);
+  }
+
+  function closeModalTask() {
+    setIsModalTaskOpen(false);
+  }
+
+  function openModalTask(val) {
+    setIsEdit(val);
+    setIsModalTaskOpen(true);
+  }
+
+  function setTaskValue(val) {
+    setTaskName(val)
+  }
+
+  function setProgressValue(val) {
+    setProgress(val)
   }
 
   return (
@@ -88,11 +110,23 @@ function DashboardPage() {
             key={data.id}
             data={data}
             openModalDelete={openModalDelete}
+            openModalTask={openModalTask}
             isModalDeleteOpen={isModalDeleteOpen}
+            isModalTaskOpen={isModalTaskOpen}
+            setTaskName={setTaskName}
+            setProgress={setProgress}
           />;
         })}
       </div>
       <DeleteModal isModalDeleteOpen={isModalDeleteOpen} closeModalDelete={closeModalDelete} />
+      <TaskModal
+        taskName={taskName}
+        progress={progress}
+        onChangeTask={setTaskValue}
+        onChangeProgress={setProgressValue}
+        isEdit={isEdit}
+        isModalTaskOpen={isModalTaskOpen}
+        closeModalTask={closeModalTask} />
     </div>
   );
 }

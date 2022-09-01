@@ -7,11 +7,13 @@ function ItemCard(props) {
     console.log("handleMoveLeft");
   }
   function handleEdit() {
-    console.log("handleEdit");
+    props.openModalTask(true)
+    props.setTaskName(props.data.name)
+    props.setProgress(props.data.progress_percentage)
+    props.openModalTask(true)
   }
   function handleDelete() {
     props.openModalDelete()
-    console.log("handleDelete");
   }
   function progressClass(value) {
     return value >= 100 ? 'h-3 bg-emerald-700 rounded-full' : 'h-3 bg-cyan-600 rounded-full'
