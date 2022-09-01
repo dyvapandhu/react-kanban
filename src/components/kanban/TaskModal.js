@@ -11,11 +11,17 @@ export default function MyModal(props) {
   }
 
   function handleChangeTask(e) {
-    props.onChangeTask(e.target.value)
+    props.onChangeTask(e.target.value);
   }
 
   function handleChangeProgress(e) {
-    props.onChangeProgress(e.target.value)
+    props.onChangeProgress(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    console.log("task", props.taskName);
+    console.log("progress", parseInt(props.progress));
   }
 
   return (
@@ -73,56 +79,57 @@ export default function MyModal(props) {
                     </svg>
                     <span className="sr-only">Close modal</span>
                   </button>
-                  <div className="mt-5 mb-10">
-                    <label
-                      htmlFor="task_name"
-                      className="block mb-2 text-sm font-medium"
-                    >
-                      Task Name
-                    </label>
-                    <input
-                      id="task_name"
-                      type="text"
-                      className="block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500"
-                      placeholder="Type your task"
-                      value={props.taskName}
-                      onChange={handleChangeTask}
-                    />
-                    <label
-                      htmlFor="progress"
-                      className="block mb-2 text-sm font-medium mt-4"
-                    >
-                      Progress
-                    </label>
-                    <div className="flex flex-row">
-                      <div className="basis-1/2">
-                        <input
-                          id="progress"
-                          type="number"
-                          className="block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500"
-                          placeholder="70%"
-                          value={props.progress}
-                          onChange={handleChangeProgress}
-                        />
+                  <form onSubmit={handleSubmit}>
+                    <div className="mt-5 mb-10">
+                      <label
+                        htmlFor="task_name"
+                        className="block mb-2 text-sm font-medium"
+                      >
+                        Task Name
+                      </label>
+                      <input
+                        id="task_name"
+                        type="text"
+                        className="block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Type your task"
+                        value={props.taskName}
+                        onChange={handleChangeTask}
+                      />
+                      <label
+                        htmlFor="progress"
+                        className="block mb-2 text-sm font-medium mt-4"
+                      >
+                        Progress
+                      </label>
+                      <div className="flex flex-row">
+                        <div className="basis-1/2">
+                          <input
+                            id="progress"
+                            type="number"
+                            className="block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="70%"
+                            value={props.progress}
+                            onChange={handleChangeProgress}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex justify-end mt-4">
-                    <button
-                      type="button"
-                      className="inline-flex shadow-inner justify-center mr-2 rounded-md border border-grey bg-white-100 px-4 py-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModalTask}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-cyan-700 px-4 py-2 text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModalTask}
-                    >
-                      Save Task
-                    </button>
-                  </div>
+                    <div className="flex justify-end mt-4">
+                      <button
+                        type="button"
+                        className="inline-flex shadow-inner justify-center mr-2 rounded-md border border-grey bg-white-100 px-4 py-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        onClick={closeModalTask}
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-cyan-700 px-4 py-2 text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      >
+                        Save Task
+                      </button>
+                    </div>
+                  </form>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

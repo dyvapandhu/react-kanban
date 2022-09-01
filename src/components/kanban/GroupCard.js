@@ -7,7 +7,7 @@ function GroupCard(props) {
     props.openModalTask(false)
   }
   return (
-    <div className="block p-3 max-w-sm bg-emerald-50 rounded-md border border-emerald-500">
+    <div className="block p-3 max-w-sm bg-emerald-50 rounded-md border border-cyan-500">
       <button
         type="button"
         disabled
