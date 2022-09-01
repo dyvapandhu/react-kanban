@@ -2,14 +2,14 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
 export default function MyModal(props) {
-  function closeModal() {
-    props.closeModal();
+  function closeModalDelete() {
+    props.closeModalDelete();
   }
 
   return (
     <>
-      <Transition appear show={props.isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+      <Transition appear show={props.isModalDeleteOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModalDelete}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -64,7 +64,7 @@ export default function MyModal(props) {
                     type="button"
                     className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
                     data-modal-toggle="popup-modal"
-                    onClick={closeModal}
+                    onClick={closeModalDelete}
                   >
                     <svg
                       aria-hidden="true"
@@ -91,14 +91,14 @@ export default function MyModal(props) {
                     <button
                       type="button"
                       className="inline-flex shadow-inner justify-center mr-2 rounded-md border border-grey bg-white-100 px-4 py-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
+                      onClick={closeModalDelete}
                     >
                       Cancel
                     </button>
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
+                      onClick={closeModalDelete}
                     >
                       Delete
                     </button>

@@ -10,6 +10,7 @@ function ItemCard(props) {
     console.log("handleEdit");
   }
   function handleDelete() {
+    props.openModalDelete()
     console.log("handleDelete");
   }
   function progressClass(value) {

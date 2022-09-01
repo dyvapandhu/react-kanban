@@ -1,4 +1,6 @@
 import GroupCard from "../components/kanban/GroupCard";
+import { useState } from "react";
+import DeleteModal from "../components/kanban/DeleteModal";
 
 function DashboardPage() {
   const datas = [
@@ -67,15 +69,33 @@ function DashboardPage() {
       items: [],
     },
   ];
+
+  let [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+
+  function closeModalDelete() {
+    setIsModalDeleteOpen(false);
+  }
+
+  function openModalDelete() {
+    setIsModalDeleteOpen(true);
+  }
+
   return (
     <div className="container m-2">
       <div className="grid grid-cols-4 gap-4">
         {datas.map((data) => {
-          return <GroupCard key={data.id} data={data} />;
+          return <GroupCard
+            key={data.id}
+            data={data}
+            openModalDelete={openModalDelete}
+            isModalDeleteOpen={isModalDeleteOpen}
+          />;
         })}
       </div>
+      <DeleteModal isModalDeleteOpen={isModalDeleteOpen} closeModalDelete={closeModalDelete} />
     </div>
   );
 }
 
 export default DashboardPage;
+

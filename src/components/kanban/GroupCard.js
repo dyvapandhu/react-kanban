@@ -12,7 +12,11 @@ function GroupCard(props) {
       </button>
       <p className="mt-1 mb-2">{props.data.description}</p>
       {props.data.items.map((item) => {
-        return <ItemCard key={item.id} data={item} />;
+        return <ItemCard
+          key={item.id}
+          data={item}
+          openModalDelete={props.openModalDelete}
+        />;
       })}
       <button
         type="button"
