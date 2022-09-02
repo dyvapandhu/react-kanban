@@ -99,6 +99,41 @@ function DashboardPage() {
       });
   }
 
+  async function editTask() {
+    const url = process.env.REACT_APP_API_URL;
+    const defaultOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: process.env.REACT_APP_TOKEN,
+      },
+      body: JSON.stringify({
+        target_todo_id: groupId,
+        name: taskName,
+        progress_percentage: parseInt(progress),
+      }),
+    };
+    await fetch(url + `/todos/${groupId}/items/${taskId}`, defaultOptions)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        const temp = todos.map((group) => {
+          if (group.id === data.todo_id) {
+            group.items = group.items.map((item) => {
+              if (item.id === data.id) {
+                item = data;
+              }
+              return item;
+            });
+          }
+          return group;
+        });
+        setTodos(temp);
+        setIsModalTaskOpen(false);
+      });
+  }
+
   async function deleteTask() {
     const url = process.env.REACT_APP_API_URL;
     const defaultOptions = {
@@ -108,19 +143,20 @@ function DashboardPage() {
         Authorization: process.env.REACT_APP_TOKEN,
       },
     };
-    await fetch(url + `/todos/${groupId}/items/${taskId}`, defaultOptions)
-      .then((res) => {
+    await fetch(url + `/todos/${groupId}/items/${taskId}`, defaultOptions).then(
+      (res) => {
         if (res.status === 204) {
           const temp = todos.map((group) => {
             if (group.id === groupId) {
-              group.items = group.items.filter((item) => item.id !== taskId)
+              group.items = group.items.filter((item) => item.id !== taskId);
             }
-            return group
-          })
-          setTodos(temp)
-          setIsModalDeleteOpen(false)
+            return group;
+          });
+          setTodos(temp);
+          setIsModalDeleteOpen(false);
         }
-      });
+      }
+    );
   }
 
   return (
@@ -161,6 +197,7 @@ function DashboardPage() {
         isModalTaskOpen={isModalTaskOpen}
         closeModalTask={closeModalTask}
         createTask={createTask}
+        editTask={editTask}
       />
     </div>
   );

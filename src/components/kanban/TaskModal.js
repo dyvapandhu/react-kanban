@@ -19,8 +19,12 @@ export default function MyModal(props) {
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
-    props.createTask()
+    e.preventDefault();
+    if (props.isEdit) {
+      props.editTask();
+    } else {
+      props.createTask();
+    }
   }
 
   return (

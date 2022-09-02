@@ -7,7 +7,8 @@ function ItemCard(props) {
     console.log("handleMoveLeft");
   }
   function handleEdit() {
-    props.openModalTask(true)
+    props.setGroupId(props.groupId)
+    props.setTaskId(props.data.id)
     props.setTaskName(props.data.name)
     props.setProgress(props.data.progress_percentage)
     props.openModalTask(true)

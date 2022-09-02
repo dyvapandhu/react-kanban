@@ -2,10 +2,10 @@ import ItemCard from "./ItemCard";
 
 function GroupCard(props) {
   function handleNewTask() {
-    props.setGroupId(props.data.id)
-    props.setTaskName('')
-    props.setProgress('')
-    props.openModalTask(false)
+    props.setGroupId(props.data.id);
+    props.setTaskName("");
+    props.setProgress("");
+    props.openModalTask(false);
   }
   return (
     <div className="block p-3 max-w-sm bg-emerald-50 rounded-md border border-cyan-500">
@@ -18,19 +18,21 @@ function GroupCard(props) {
       </button>
       <p className="mt-1 mb-2">{props.data.description}</p>
       {props.data.items.map((item) => {
-        return <ItemCard
-          key={item.id}
-          data={item}
-          order={props.order}
-          totalGroup={props.totalGroup}
-          openModalDelete={props.openModalDelete}
-          openModalTask={props.openModalTask}
-          groupId={props.data.id}
-          setGroupId={props.setGroupId}
-          setTaskId={props.setTaskId}
-          setTaskName={props.setTaskName}
-          setProgress={props.setProgress}
-        />;
+        return (
+          <ItemCard
+            key={item.id}
+            data={item}
+            order={props.order}
+            totalGroup={props.totalGroup}
+            openModalDelete={props.openModalDelete}
+            openModalTask={props.openModalTask}
+            groupId={props.data.id}
+            setGroupId={props.setGroupId}
+            setTaskId={props.setTaskId}
+            setTaskName={props.setTaskName}
+            setProgress={props.setProgress}
+          />
+        );
       })}
       <button
         type="button"
