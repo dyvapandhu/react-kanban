@@ -205,7 +205,6 @@ function DashboardPage() {
 
   return (
     <div className="container m-2">
-      Order: {order}
       <div className="grid grid-cols-4 gap-4">
         {todos.map((data, index) => {
           return (

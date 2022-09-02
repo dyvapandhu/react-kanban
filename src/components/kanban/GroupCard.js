@@ -7,12 +7,30 @@ function GroupCard(props) {
     props.setProgress("");
     props.openModalTask(false);
   }
+  function generateBgColor(order) {
+    const classes = [
+      'bg-cyan-50',
+      'bg-yellow-50',
+      'bg-red-50',
+      'bg-green-50'
+    ]
+    return classes[order - 1]
+  }
+  function generateBorderColor(order) {
+    const classes = [
+      'border-cyan-500',
+      'border-yellow-500',
+      'border-red-500',
+      'border-green-500'
+    ]
+    return classes[order - 1]
+  }
   return (
-    <div className="block p-3 max-w-sm bg-emerald-50 rounded-md border border-cyan-500">
+    <div className={`block p-3 max-w-sm ${generateBgColor(props.order)} rounded-md border ${generateBorderColor(props.order)}`}>
       <button
         type="button"
         disabled
-        className="bg-emerald-50 border-emerald-500 py-1 px-1 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-sm border border-gray-200"
+        className={`${generateBgColor(props.order)} ${generateBorderColor(props.order)} py-1 px-1 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-sm border border-gray-200`}
       >
         {props.data.title}
       </button>

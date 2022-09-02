@@ -22,7 +22,7 @@ function ItemCard(props) {
     return value >= 100 ? 'h-3 bg-emerald-700 rounded-full' : 'h-3 bg-cyan-600 rounded-full'
   }
   return (
-    <div className="mt-3 block p-3 max-w-sm bg-white rounded-md border border-gray-200 hover:bg-blue-100 ">
+    <div className="mt-3 block cursor-pointer p-3 max-w-sm bg-white rounded-md border border-gray-200 hover:bg-blue-100 ">
       <p className="font-semibold">{props.data.name}</p>
       <hr className="mt-1 mb-2" />
       <div className="flex flex-row">
