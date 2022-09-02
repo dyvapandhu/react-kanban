@@ -49,7 +49,6 @@ function GroupCard(props) {
             setTaskId={props.setTaskId}
             setTaskName={props.setTaskName}
             setProgress={props.setProgress}
-            setOrder={props.setOrder}
             move={props.move}
           />
         );

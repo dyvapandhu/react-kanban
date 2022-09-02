@@ -12,7 +12,6 @@ function DashboardPage() {
   let [progress, setProgress] = useState(false);
   let [groupId, setGroupId] = useState(null);
   let [taskId, setTaskId] = useState(null);
-  let [order, setOrder] = useState(null);
 
   useEffect(() => {
     const url = process.env.REACT_APP_API_URL;
@@ -221,7 +220,6 @@ function DashboardPage() {
               setProgress={setProgress}
               setGroupId={setGroupId}
               setTaskId={setTaskId}
-              setOrder={setOrder}
               move={move}
             />
           );
