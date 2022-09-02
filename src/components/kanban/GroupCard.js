@@ -2,6 +2,7 @@ import ItemCard from "./ItemCard";
 
 function GroupCard(props) {
   function handleNewTask() {
+    props.setGroupId(props.data.id)
     props.setTaskName('')
     props.setProgress('')
     props.openModalTask(false)
@@ -15,6 +16,7 @@ function GroupCard(props) {
       >
         {props.data.title}
       </button>
+      {props.data.id}
       <p className="mt-1 mb-2">{props.data.description}</p>
       {props.data.items.map((item) => {
         return <ItemCard

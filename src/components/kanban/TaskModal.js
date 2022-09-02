@@ -20,8 +20,7 @@ export default function MyModal(props) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log("task", props.taskName);
-    console.log("progress", parseInt(props.progress));
+    props.createTask()
   }
 
   return (

@@ -10,6 +10,7 @@ function DashboardPage() {
   let [isEdit, setIsEdit] = useState(false);
   let [taskName, setTaskName] = useState(false);
   let [progress, setProgress] = useState(false);
+  let [groupId, setGroupId] = useState(null);
 
   useEffect(() => {
     const url = process.env.REACT_APP_API_URL;
@@ -68,6 +69,33 @@ function DashboardPage() {
     setProgress(val);
   }
 
+  async function createTask() {
+    const url = process.env.REACT_APP_API_URL;
+    const defaultOptions = {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: process.env.REACT_APP_TOKEN,
+      },
+      body: JSON.stringify({
+        name: taskName,
+        progress_percentage: parseInt(progress),
+      }),
+    };
+    await fetch(url + `/todos/${groupId}/items`, defaultOptions).then((res) => {
+      return res.json()
+    }).then((data) => {
+      const temp = todos.map((group) => {
+        if (group.id === data.todo_id) {
+          group.items.push(data)
+        }
+        return group
+      })
+      setTodos(temp)
+      setIsModalTaskOpen(false)
+    });
+  }
+
   return (
     <div className="container m-2">
       <div className="grid grid-cols-4 gap-4">
@@ -84,6 +112,7 @@ function DashboardPage() {
               isModalTaskOpen={isModalTaskOpen}
               setTaskName={setTaskName}
               setProgress={setProgress}
+              setGroupId={setGroupId}
             />
           );
         })}
@@ -93,6 +122,7 @@ function DashboardPage() {
         closeModalDelete={closeModalDelete}
       />
       <TaskModal
+        groupId={groupId}
         taskName={taskName}
         progress={progress}
         onChangeTask={setTaskValue}
@@ -100,6 +130,7 @@ function DashboardPage() {
         isEdit={isEdit}
         isModalTaskOpen={isModalTaskOpen}
         closeModalTask={closeModalTask}
+        createTask={createTask}
       />
     </div>
   );
