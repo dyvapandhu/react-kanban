@@ -13,6 +13,8 @@ function ItemCard(props) {
     props.openModalTask(true)
   }
   function handleDelete() {
+    props.setGroupId(props.groupId)
+    props.setTaskId(props.data.id)
     props.openModalDelete()
   }
   function progressClass(value) {

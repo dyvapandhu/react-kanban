@@ -16,7 +16,6 @@ function GroupCard(props) {
       >
         {props.data.title}
       </button>
-      {props.data.id}
       <p className="mt-1 mb-2">{props.data.description}</p>
       {props.data.items.map((item) => {
         return <ItemCard
@@ -26,6 +25,9 @@ function GroupCard(props) {
           totalGroup={props.totalGroup}
           openModalDelete={props.openModalDelete}
           openModalTask={props.openModalTask}
+          groupId={props.data.id}
+          setGroupId={props.setGroupId}
+          setTaskId={props.setTaskId}
           setTaskName={props.setTaskName}
           setProgress={props.setProgress}
         />;

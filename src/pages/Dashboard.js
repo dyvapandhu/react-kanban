@@ -11,6 +11,7 @@ function DashboardPage() {
   let [taskName, setTaskName] = useState(false);
   let [progress, setProgress] = useState(false);
   let [groupId, setGroupId] = useState(null);
+  let [taskId, setTaskId] = useState(null);
 
   useEffect(() => {
     const url = process.env.REACT_APP_API_URL;
@@ -74,7 +75,7 @@ function DashboardPage() {
     const defaultOptions = {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: process.env.REACT_APP_TOKEN,
       },
       body: JSON.stringify({
@@ -82,18 +83,44 @@ function DashboardPage() {
         progress_percentage: parseInt(progress),
       }),
     };
-    await fetch(url + `/todos/${groupId}/items`, defaultOptions).then((res) => {
-      return res.json()
-    }).then((data) => {
-      const temp = todos.map((group) => {
-        if (group.id === data.todo_id) {
-          group.items.push(data)
-        }
-        return group
+    await fetch(url + `/todos/${groupId}/items`, defaultOptions)
+      .then((res) => {
+        return res.json();
       })
-      setTodos(temp)
-      setIsModalTaskOpen(false)
-    });
+      .then((data) => {
+        const temp = todos.map((group) => {
+          if (group.id === data.todo_id) {
+            group.items.push(data);
+          }
+          return group;
+        });
+        setTodos(temp);
+        setIsModalTaskOpen(false);
+      });
+  }
+
+  async function deleteTask() {
+    const url = process.env.REACT_APP_API_URL;
+    const defaultOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: process.env.REACT_APP_TOKEN,
+      },
+    };
+    await fetch(url + `/todos/${groupId}/items/${taskId}`, defaultOptions)
+      .then((res) => {
+        if (res.status === 204) {
+          const temp = todos.map((group) => {
+            if (group.id === groupId) {
+              group.items = group.items.filter((item) => item.id !== taskId)
+            }
+            return group
+          })
+          setTodos(temp)
+          setIsModalDeleteOpen(false)
+        }
+      });
   }
 
   return (
@@ -113,16 +140,19 @@ function DashboardPage() {
               setTaskName={setTaskName}
               setProgress={setProgress}
               setGroupId={setGroupId}
+              setTaskId={setTaskId}
             />
           );
         })}
       </div>
       <DeleteModal
+        deleteTask={deleteTask}
         isModalDeleteOpen={isModalDeleteOpen}
         closeModalDelete={closeModalDelete}
       />
       <TaskModal
         groupId={groupId}
+        taskId={taskId}
         taskName={taskName}
         progress={progress}
         onChangeTask={setTaskValue}

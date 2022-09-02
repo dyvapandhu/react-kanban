@@ -6,6 +6,10 @@ export default function MyModal(props) {
     props.closeModalDelete();
   }
 
+  function deleteTask() {
+    props.deleteTask()
+  }
+
   return (
     <>
       <Transition appear show={props.isModalDeleteOpen} as={Fragment}>
@@ -98,7 +102,7 @@ export default function MyModal(props) {
                     <button
                       type="button"
                       className="inline-flex justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModalDelete}
+                      onClick={deleteTask}
                     >
                       Delete
                     </button>
