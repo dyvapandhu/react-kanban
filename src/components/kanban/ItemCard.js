@@ -1,10 +1,10 @@
 import ItemAction from "./ItemAction";
 function ItemCard(props) {
   function handleMoveRight() {
-    console.log("handleMoveRight");
+    props.move('right', props.order, props.data)
   }
   function handleMoveLeft() {
-    console.log("handleMoveLeft");
+    props.move('left', props.order, props.data)
   }
   function handleEdit() {
     props.setGroupId(props.groupId)

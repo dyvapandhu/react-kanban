@@ -12,6 +12,7 @@ function DashboardPage() {
   let [progress, setProgress] = useState(false);
   let [groupId, setGroupId] = useState(null);
   let [taskId, setTaskId] = useState(null);
+  let [order, setOrder] = useState(null);
 
   useEffect(() => {
     const url = process.env.REACT_APP_API_URL;
@@ -134,6 +135,49 @@ function DashboardPage() {
       });
   }
 
+  async function move(type, order, task) {
+    let group = null;
+    if (type === "right") {
+      group = todos[order];
+    }
+    if (type === "left") {
+      group = todos[order - 2];
+    }
+    const url = process.env.REACT_APP_API_URL;
+    const defaultOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: process.env.REACT_APP_TOKEN,
+      },
+      body: JSON.stringify({
+        target_todo_id: group.id,
+      }),
+    };
+    await fetch(url + `/todos/${task.todo_id}/items/${task.id}`, defaultOptions)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        const tempTodos = todos.map((group, index) => {
+          if (
+            (type === "right" && index === order) ||
+            (type === "left" && index === order - 2)
+          ) {
+            group.items.push(data);
+          }
+          if (
+            (type === "right" && index === order - 1) ||
+            (type === "left" && index === order - 1)
+          ) {
+            group.items = group.items.filter((item) => item.id !== task.id);
+          }
+          return group;
+        });
+        setTodos(tempTodos);
+      });
+  }
+
   async function deleteTask() {
     const url = process.env.REACT_APP_API_URL;
     const defaultOptions = {
@@ -161,6 +205,7 @@ function DashboardPage() {
 
   return (
     <div className="container m-2">
+      Order: {order}
       <div className="grid grid-cols-4 gap-4">
         {todos.map((data, index) => {
           return (
@@ -177,6 +222,8 @@ function DashboardPage() {
               setProgress={setProgress}
               setGroupId={setGroupId}
               setTaskId={setTaskId}
+              setOrder={setOrder}
+              move={move}
             />
           );
         })}
